@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>الرئيسية | منصة شهيد</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="app-body">
+  <div class="app-shell" data-tabbar="home">
+    <header class="app-header">
+      <img src="assets/img/logo_new_syria.svg" alt="شعار منصة شهيد" class="app-logo" />
+      <div class="app-header-text">
+        <p class="brand-tag">منصة شهيد</p>
+        <h1 id="welcomeTitle">مرحباً</h1>
+      </div>
+      <button type="button" class="btn-logout" id="logoutBtn" title="تسجيل الخروج">خروج</button>
+    </header>
+
+    <main class="app-main">
+      <section class="app-shortcuts" aria-label="اختصارات">
+        <a href="complaint.html" class="shortcut-card">
+          <span class="shortcut-icon" aria-hidden="true">✉️</span>
+          <span>تقديم شكوى</span>
+        </a>
+        <a href="applicant.html" class="shortcut-card">
+          <span class="shortcut-icon" aria-hidden="true">👤</span>
+          <span>بياناتي</span>
+        </a>
+      </section>
+
+      <section class="form-card app-card">
+        <div class="section-heading">
+          <p class="eyebrow">سجل الشهداء</p>
+          <h3 id="pageSubtitle">إضافة شهيد جديد</h3>
+        </div>
+
+        <div id="martyrsList" class="martyrs-list"></div>
+
+        <div class="empty-state hidden" id="emptyState">
+          <div class="empty-icon">🕊️</div>
+          <p>لم تُضف أي شهيد بعد. اضغط الزر أدناه لبدء تعبئة استمارة الشهيد.</p>
+        </div>
+
+        <div class="form-actions home-actions">
+          <a href="martyr-form.html" class="btn btn-primary wide" id="addMartyrBtn">+ إضافة شهيد</a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/storage.js"></script>
+  <script src="assets/app-tabs.js"></script>
+  <script>
+    const session = requireAuth();
+    const user = getUser(session.phone);
+    const martyrs = getMartyrs(session.phone);
+    const applicant = user?.applicant || { firstName: 'ضيف', familyName: '' };
+
+    document.getElementById('welcomeTitle').textContent =
+      `مرحباً ${applicant.firstName} ${applicant.familyName}`;
+
+    const listEl = document.getElementById('martyrsList');
+    const emptyEl = document.getElementById('emptyState');
+    const subtitle = document.getElementById('pageSubtitle');
+
+    const statusLabels = {
+      draft: 'مسودة',
+      submitted: 'قيد المراجعة',
+      approved: 'مقبول',
+      rejected: 'مرفوض',
+    };
+
+    if (martyrs.length === 0) {
+      emptyEl.classList.remove('hidden');
+      subtitle.textContent = 'ابدأ بإضافة أول شهيد';
+    } else {
+      subtitle.textContent = 'الشهداء المسجلون';
+      martyrs.forEach(martyr => {
+        const name = [martyr.firstName, martyr.fatherName, martyr.familyName]
+          .filter(Boolean).join(' ') || 'شهيد بدون اسم';
+        const card = document.createElement('article');
+        card.className = 'martyr-list-card';
+        card.innerHTML = `
+          <div class="martyr-list-info">
+            <h4>${name}</h4>
+            <p class="martyr-meta">${martyr.relationship ? 'صلة القرابة: ' + martyr.relationship : ''}</p>
+            <span class="status-badge status-${martyr.status || 'draft'}">${statusLabels[martyr.status || 'draft']}</span>
+          </div>
+          <div class="martyr-list-actions">
+            <a href="martyr-form.html?id=${martyr.id}" class="btn btn-secondary btn-sm">عرض / تعديل</a>
+            ${martyr.status === 'submitted' ? `<a href="status.html?id=${martyr.id}" class="btn btn-secondary btn-sm">الحالة</a>` : ''}
+          </div>
+        `;
+        listEl.appendChild(card);
+      });
+    }
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      clearSession();
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>

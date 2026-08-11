@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>استمارة الشهيد | منصة شهيد</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="app-body">
+  <div class="app-shell">
+    <header class="app-header">
+      <a href="home.html" class="app-back" aria-label="العودة">→</a>
+      <div class="app-header-text">
+        <p class="brand-tag">استمارة الشهيد</p>
+        <h1 id="formTitle">إضافة شهيد</h1>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <section class="form-card app-card">
+        <form class="request-form" id="martyrForm">
+          <datalist id="syria-locations"></datalist>
+
+          <nav class="step-track" aria-label="مؤشر الأقسام">
+            <button type="button" class="step-dot active" data-step-dot="1" title="الشهيد">
+              <span class="step-num">1</span>
+              <span class="step-label">الشهيد</span>
+            </button>
+            <span class="step-arrow" data-step-arrow="1" aria-hidden="true">←</span>
+            <button type="button" class="step-dot incomplete" data-step-dot="2" title="بيانات الفصيل أو التشكيل">
+              <span class="step-num">2</span>
+              <span class="step-label">الفصيل</span>
+            </button>
+            <span class="step-arrow" data-step-arrow="2" aria-hidden="true">←</span>
+            <button type="button" class="step-dot incomplete" data-step-dot="3" title="الاستشهاد">
+              <span class="step-num">3</span>
+              <span class="step-label">الاستشهاد</span>
+            </button>
+            <span class="step-arrow" data-step-arrow="3" aria-hidden="true">←</span>
+            <button type="button" class="step-dot incomplete" data-step-dot="4" title="الوثائق">
+              <span class="step-num">4</span>
+              <span class="step-label">الوثائق</span>
+            </button>
+            <span class="step-arrow" data-step-arrow="4" aria-hidden="true">←</span>
+            <button type="button" class="step-dot incomplete" data-step-dot="5" title="الشهود">
+              <span class="step-num">5</span>
+              <span class="step-label">الشهود</span>
+            </button>
+            <span class="step-arrow" data-step-arrow="5" aria-hidden="true">←</span>
+            <button type="button" class="step-dot incomplete" data-step-dot="6" title="الإقرار">
+              <span class="step-num">6</span>
+              <span class="step-label">الإقرار</span>
+            </button>
+          </nav>
+
+          <p class="step-legend">
+            <span class="legend-item"><span class="legend-dot completed"></span> مكتمل</span>
+            <span class="legend-item"><span class="legend-dot active"></span> الحالي</span>
+            <span class="legend-item"><span class="legend-dot incomplete"></span> غير مكتمل</span>
+          </p>
+
+          <!-- القسم 1: الشهيد -->
+          <section class="form-section active" data-step="1">
+            <h4>القسم الأول: بيانات الشهيد</h4>
+            <div class="form-grid form-grid-single">
+              <label><span>صلة القرابة بمقدم الطلب</span>
+                <select name="relationship" required data-required-track data-other-trigger>
+                  <option value="">اختر صلة القرابة</option>
+                  <option>الأب</option>
+                  <option>الأم</option>
+                  <option>الزوجة</option>
+                  <option>الابن</option>
+                  <option>الابنة</option>
+                  <option>الأخ</option>
+                  <option>الأخت</option>
+                  <option value="other">أخرى</option>
+                </select>
+                <input type="text" name="relationshipOther" data-other-input class="other-field hidden" placeholder="يرجى توضيح صلة القرابة" />
+              </label>
+              <label><span>الاسم الأول للشهيد</span>
+                <input type="text" name="firstName" placeholder="الاسم الأول" required data-required-track />
+              </label>
+              <label><span>اسم الأب للشهيد</span>
+                <input type="text" name="fatherName" placeholder="اسم الأب" required data-required-track />
+              </label>
+              <label><span>اسم عائلة الشهيد</span>
+                <input type="text" name="familyName" placeholder="اسم العائلة" required data-required-track />
+              </label>
+              <label><span>اسم والدة الشهيد</span>
+                <input type="text" name="motherName" placeholder="الاسم الأول فقط" data-required-track />
+              </label>
+              <label><span>الاسم الحركي أو اللقب</span>
+                <input type="text" name="nickname" placeholder="إن وجد" data-required-track />
+              </label>
+              <label><span>الرقم الوطني للشهيد</span>
+                <input type="text" name="nationalId" placeholder="إن توفر" data-required-track />
+              </label>
+              <label><span>يوم الميلاد</span>
+                <select name="birthDay" id="birthDay" data-required-track><option value="">اليوم</option></select>
+              </label>
+              <label><span>شهر الميلاد</span>
+                <select name="birthMonth" id="birthMonth" data-required-track><option value="">الشهر</option></select>
+              </label>
+              <label><span>سنة الميلاد</span>
+                <select name="birthYear" id="birthYear" data-required-track><option value="">السنة</option></select>
+              </label>
+              <label><span>مكان الولادة</span>
+                <input type="search" name="birthPlace" list="syria-locations" data-syria-search placeholder="المدينة فقط" data-required-track autocomplete="off" />
+              </label>
+              <label><span>الحالة الاجتماعية وقت الاستشهاد</span>
+                <select name="maritalStatus" data-required-track>
+                  <option value="">اختر</option>
+                  <option>أعزب</option><option>متزوج</option><option>مطلق</option><option>أرمل</option>
+                </select>
+              </label>
+              <label><span>عدد أبناء الشهيد وبناته</span>
+                <input type="number" name="childrenCount" placeholder="0" min="0" data-required-track />
+              </label>
+            </div>
+          </section>
+
+          <!-- القسم 2: الفصيل أو التشكيل -->
+          <section class="form-section" data-step="2">
+            <h4>القسم الثاني: بيانات الفصيل أو التشكيل</h4>
+            <div class="form-grid form-grid-single">
+              <label><span>اسم الفصيل أو التشكيل</span>
+                <input type="text" name="factionName" placeholder="اسم الفصيل أو التشكيل" required data-required-track />
+                <small class="field-hint">اكتب الاسم الذي كان الفصيل معروفاً به وقت انتساب الشهيد، حتى لو تغيّر اسمه أو لم يعد موجوداً.</small>
+              </label>
+              <label><span>اسم اللواء أو الكتيبة أو المجموعة، إن وجد</span>
+                <input type="text" name="factionUnit" placeholder="مثال: لواء، كتيبة، مجموعة..." data-required-track />
+              </label>
+              <label><span>الصفة أو المهمة الأساسية للشهيد ضمن الفصيل</span>
+                <select name="martyrRole" required data-required-track data-other-trigger>
+                  <option value="">اختر النشاط الأساسي</option>
+                  <option>مقاتل</option>
+                  <option>قائد أو مسؤول عسكري</option>
+                  <option>شرعي</option>
+                  <option>طبي أو مسعف</option>
+                  <option>لوجستي أو إمداد ودعم</option>
+                  <option>سائق أو نقل</option>
+                  <option>إعلامي</option>
+                  <option>أمني أو حراسة</option>
+                  <option>إداري أو خدمي</option>
+                  <option value="other">غير ذلك</option>
+                </select>
+                <input type="text" name="martyrRoleOther" data-other-input class="other-field hidden" placeholder="يرجى توضيح الصفة أو المهمة" />
+              </label>
+              <label><span>اسم القائد أو المسؤول المباشر، إن عرف</span>
+                <input type="text" name="directCommander" placeholder="اسم القائد أو المسؤول المباشر" data-required-track />
+              </label>
+            </div>
+          </section>
+
+          <!-- القسم 3: الاستشهاد -->
+          <section class="form-section" data-step="3">
+            <h4>القسم الثالث: بيانات الاستشهاد</h4>
+            <div class="form-grid form-grid-single">
+              <label><span>يوم الاستشهاد</span>
+                <select name="deathDay" id="deathDay" required data-required-track><option value="">اليوم</option></select>
+              </label>
+              <label><span>شهر الاستشهاد</span>
+                <select name="deathMonth" id="deathMonth" required data-required-track><option value="">الشهر</option></select>
+              </label>
+              <label><span>سنة الاستشهاد</span>
+                <select name="deathYear" id="deathYear" required data-required-track><option value="">السنة</option></select>
+              </label>
+              <label><span>مكان الاستشهاد</span>
+                <input type="search" name="deathPlace" list="syria-locations" data-syria-search placeholder="المنطقة فقط" required data-required-track autocomplete="off" />
+              </label>
+              <label><span>الظرف الذي وقع فيه الاستشهاد</span>
+                <select name="deathCircumstance" required data-required-track data-other-trigger>
+                  <option value="">اختر</option>
+                  <option value="battle">معركة أو اشتباك مباشر</option>
+                  <option>الرباط على إحدى الجبهات</option>
+                  <option>تنفيذ مهمة قتالية</option>
+                  <option>التنقل إلى مهمة أو العودة منها</option>
+                  <option>التواجد في مقر الفصيل أو التشكيل</option>
+                  <option>التواجد في المنزل أو مكان الإقامة</option>
+                  <option value="other">غير ذلك</option>
+                </select>
+                <input type="text" name="deathCircumstanceOther" data-other-input class="other-field hidden" placeholder="يرجى توضيح الظرف" />
+              </label>
+              <label class="hidden" data-show-when="deathCircumstance" data-show-value="battle" data-required-when="true">
+                <span>اسم المعركة</span>
+                <input type="text" name="battleName" placeholder="اسم المعركة" data-required-track />
+              </label>
+              <label><span>كيفية وقوع الاستشهاد</span>
+                <select name="deathMethod" required data-required-track data-other-trigger>
+                  <option value="">اختر</option>
+                  <option>إصابة بطلق ناري</option>
+                  <option>قصف جوي</option>
+                  <option>قصف مدفعي أو صاروخي</option>
+                  <option>انفجار أو عبوة ناسفة أو لغم</option>
+                  <option>اغتيال</option>
+                  <option>التأثر بإصابة سابقة مرتبطة بالقتال</option>
+                  <option>حادث مرتبط بمهمة</option>
+                  <option value="other">غير ذلك</option>
+                </select>
+                <input type="text" name="deathMethodOther" data-other-input class="other-field hidden" placeholder="يرجى التوضيح" />
+              </label>
+            </div>
+          </section>
+
+          <!-- القسم 4: الوثائق -->
+          <section class="form-section" data-step="4">
+            <h4>القسم الرابع: الوثائق والأدلة المتوفرة</h4>
+            <div id="documentsContainer" class="documents-stack">
+              <div class="document-row" data-doc-row="0">
+                <label>
+                  <span>عنوان الوثيقة</span>
+                  <select name="docTitle_0" class="doc-title-select" required data-required-track data-other-trigger>
+                    <option value="">اختر عنوان الوثيقة</option>
+                    <option>هوية شخصية أو إخراج قيد</option>
+                    <option>بيان وفاة أو شهادة وفاة</option>
+                    <option>بيان عائلي أو دفتر عائلة</option>
+                    <option>وثيقة أو سجل صادر عن الفصيل</option>
+                    <option>بيان أو نعي استشهاد</option>
+                    <option>صور أو مقاطع أو منشورات</option>
+                    <option value="other">أخرى</option>
+                  </select>
+                  <input type="text" name="docTitleOther_0" data-other-input class="other-field hidden" placeholder="اكتب عنوان الوثيقة" />
+                </label>
+                <label>
+                  <span>رفع الوثيقة</span>
+                  <input type="file" name="docFile_0" accept="image/*,.pdf" required data-required-track />
+                </label>
+              </div>
+            </div>
+            <button type="button" class="btn btn-secondary btn-add-row" id="addDocumentBtn">+ إضافة وثيقة جديدة</button>
+            <label class="form-note-field"><span>ملاحظات حول الوثائق</span>
+              <input type="text" name="docNotes" placeholder="تفاصيل إضافية (اختياري)" data-required-track />
+            </label>
+          </section>
+
+          <!-- القسم 5: الشهود -->
+          <section class="form-section" data-step="5">
+            <h4>القسم الخامس: بيانات الشهود</h4>
+            <div class="witness-stack">
+              <div class="witness-card">
+                <h5>الشاهد الأول</h5>
+                <div class="form-grid form-grid-single">
+                  <label><span>الاسم الأول</span>
+                    <input type="text" name="witness1FirstName" placeholder="الاسم الأول" required data-required-track />
+                  </label>
+                  <label><span>اسم الأب</span>
+                    <input type="text" name="witness1FatherName" placeholder="اسم الأب" required data-required-track />
+                  </label>
+                  <label><span>اسم العائلة</span>
+                    <input type="text" name="witness1FamilyName" placeholder="اسم العائلة" required data-required-track />
+                  </label>
+                  <label><span>الرقم الوطني</span>
+                    <input type="text" name="witness1NationalId" placeholder="الرقم الوطني" required data-required-track />
+                  </label>
+                  <label><span>الرقم الوظيفي / الذاتي</span>
+                    <input type="text" name="witness1EmployeeId" placeholder="الرقم الوظيفي أو الذاتي" required data-required-track />
+                  </label>
+                  <label><span>رقم موبايل</span>
+                    <input type="tel" name="witness1Phone" placeholder="09XXXXXXXXX" required data-required-track />
+                  </label>
+                  <label><span>جهة العمل</span>
+                    <select name="witness1Workplace" required data-required-track>
+                      <option selected>وزارة الدفاع</option>
+                    </select>
+                  </label>
+                  <label><span>أساس المعرفة</span>
+                    <select name="witness1Basis" required data-required-track data-other-trigger>
+                      <option value="">اختر</option>
+                      <option>كان قائده أو مسؤوله المباشر</option>
+                      <option>عمل أو خدم معه ضمن الفصيل</option>
+                      <option>شارك معه في معركة أو مهمة</option>
+                      <option>شاهد واقعة الاستشهاد</option>
+                      <option>شارك في إسعافه أو نقل جثمانه أو دفنه</option>
+                      <option>لديه معرفة مباشرة أخرى</option>
+                      <option value="other">غير ذلك</option>
+                    </select>
+                    <input type="text" name="witness1BasisOther" data-other-input class="other-field hidden" placeholder="يرجى التوضيح" />
+                  </label>
+                </div>
+              </div>
+              <div class="witness-card">
+                <h5>الشاهد الثاني</h5>
+                <div class="form-grid form-grid-single">
+                  <label><span>الاسم الأول</span>
+                    <input type="text" name="witness2FirstName" placeholder="الاسم الأول" required data-required-track />
+                  </label>
+                  <label><span>اسم الأب</span>
+                    <input type="text" name="witness2FatherName" placeholder="اسم الأب" required data-required-track />
+                  </label>
+                  <label><span>اسم العائلة</span>
+                    <input type="text" name="witness2FamilyName" placeholder="اسم العائلة" required data-required-track />
+                  </label>
+                  <label><span>الرقم الوطني</span>
+                    <input type="text" name="witness2NationalId" placeholder="الرقم الوطني" required data-required-track />
+                  </label>
+                  <label><span>الرقم الوظيفي / الذاتي</span>
+                    <input type="text" name="witness2EmployeeId" placeholder="الرقم الوظيفي أو الذاتي" required data-required-track />
+                  </label>
+                  <label><span>رقم موبايل</span>
+                    <input type="tel" name="witness2Phone" placeholder="09XXXXXXXXX" required data-required-track />
+                  </label>
+                  <label><span>جهة العمل</span>
+                    <select name="witness2Workplace" required data-required-track data-other-trigger>
+                      <option value="">اختر جهة العمل</option>
+                      <option>وزارة الدفاع</option>
+                      <option>وزارة الداخلية</option>
+                      <option>جهاز الاستخبارات العامة</option>
+                      <option value="other">وزارة / جهة حكومية أخرى</option>
+                    </select>
+                    <input type="text" name="witness2WorkplaceOther" data-other-input class="other-field hidden" placeholder="اكتب اسم الوزارة أو الجهة" />
+                  </label>
+                  <label><span>أساس المعرفة</span>
+                    <select name="witness2Basis" required data-required-track data-other-trigger>
+                      <option value="">اختر</option>
+                      <option>كان قائده أو مسؤوله المباشر</option>
+                      <option>عمل أو خدم معه ضمن الفصيل</option>
+                      <option>شارك معه في معركة أو مهمة</option>
+                      <option>شاهد واقعة الاستشهاد</option>
+                      <option>شارك في إسعافه أو نقل جثمانه أو دفنه</option>
+                      <option>لديه معرفة مباشرة أخرى</option>
+                      <option value="other">غير ذلك</option>
+                    </select>
+                    <input type="text" name="witness2BasisOther" data-other-input class="other-field hidden" placeholder="يرجى التوضيح" />
+                  </label>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- القسم 6: الإقرار -->
+          <section class="form-section" data-step="6">
+            <h4>الإقرار والانضمام إلى مجموعة المتابعة</h4>
+            <div class="form-grid form-grid-single">
+              <label><span>أقر بأن البيانات صحيحة</span>
+                <select name="dataAccuracy" required data-required-track>
+                  <option value="">اختر</option>
+                  <option>نعم</option>
+                  <option>لا</option>
+                </select>
+              </label>
+              <label><span>تم الحصول على موافقة الشهود</span>
+                <select name="witnessConsent" required data-required-track>
+                  <option value="">اختر</option>
+                  <option>نعم</option>
+                  <option>لا</option>
+                </select>
+              </label>
+            </div>
+          </section>
+
+          <div class="form-actions form-actions-nav">
+            <button type="button" class="btn btn-nav-arrow" id="prevStep" aria-label="القسم السابق">→</button>
+            <button type="button" class="btn btn-primary" id="nextStep">التالي</button>
+            <button type="submit" class="btn btn-primary hidden" id="submitStep">حفظ وإرسال</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/storage.js"></script>
+  <script src="assets/syria-locations.js"></script>
+  <script src="assets/form-fields.js"></script>
+  <script src="assets/form-wizard.js"></script>
+  <script>
+    const session = requireAuth();
+
+    const params = new URLSearchParams(window.location.search);
+    let martyrId = params.get('id') || generateMartyrId();
+    let existingMartyr = getMartyr(session.phone, martyrId);
+
+    if (params.get('id') && !existingMartyr) {
+      martyrId = generateMartyrId();
+    }
+
+    populateDateSelects();
+    initSyriaSearch();
+
+    const form = document.getElementById('martyrForm');
+    const documentsManager = initDocumentRows();
+
+    if (existingMartyr) {
+      fillFormData(form, existingMartyr);
+      if (existingMartyr.role && !existingMartyr.martyrRole) {
+        form.martyrRole.value = 'other';
+        form.martyrRoleOther.value = existingMartyr.role;
+      }
+      if (existingMartyr.documents?.length) {
+        const container = document.getElementById('documentsContainer');
+        container.innerHTML = '';
+        existingMartyr.documents.forEach((doc, index) => {
+          documentsManager.addRowFromData(doc, index);
+        });
+      }
+      document.getElementById('formTitle').textContent = 'تعديل بيانات الشهيد';
+    }
+
+    initFormEnhancements(form);
+
+    function getStepCompletion(step, formEl) {
+      const section = formEl.querySelector(`[data-step="${step}"]`);
+      if (!section) return false;
+
+      if (step === 4) {
+        return Array.from(section.querySelectorAll('[data-doc-row]')).some(row => {
+          const titleSelect = row.querySelector('.doc-title-select');
+          const fileInput = row.querySelector('input[type="file"]');
+          const titleOther = row.querySelector('[data-other-input]');
+          const hasTitle = isOtherSelectValue(titleSelect)
+            ? titleOther?.value.trim() !== ''
+            : titleSelect?.value.trim() !== '';
+          return hasTitle && fileInput?.files.length > 0;
+        });
+      }
+
+      const required = section.querySelectorAll('[required]');
+      return Array.from(required).every(isFieldFilled);
+    }
+
+    initFormWizard({
+      formSelector: '#martyrForm',
+      getStepCompletion,
+      onSubmit: (formEl) => {
+        const data = collectFormData(formEl);
+        const martyr = {
+          ...data,
+          documents: collectDocumentRows(formEl),
+          id: martyrId,
+          status: 'submitted',
+          updatedAt: Date.now(),
+        };
+        saveMartyr(session.phone, martyr);
+        window.location.href = 'status.html?id=' + martyrId;
+      },
+    });
+  </script>
+</body>
+</html>

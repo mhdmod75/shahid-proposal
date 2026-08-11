@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>تفاصيل الشكوى | منصة شهيد</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="app-body">
+  <div class="app-shell" data-tabbar="complaint">
+    <header class="app-header">
+      <a href="complaint.html" class="app-back" aria-label="العودة">→</a>
+      <div class="app-header-text">
+        <p class="brand-tag">منصة شهيد</p>
+        <h1 id="complaintTitle">تفاصيل الشكوى</h1>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <section class="complaint-detail-head app-card">
+        <div class="complaint-list-head">
+          <strong id="complaintId">—</strong>
+          <span id="complaintStatus"></span>
+        </div>
+        <p class="section-desc" id="complaintMeta">—</p>
+      </section>
+
+      <section class="app-card">
+        <div class="section-heading">
+          <h3>سجل المحادثة</h3>
+        </div>
+        <div id="replyThread"></div>
+      </section>
+
+      <section class="form-card app-card hidden" id="replySection">
+        <div class="section-heading">
+          <h3>إضافة رد</h3>
+          <p class="section-desc">يمكنك إرفاق ملف واحد فقط مع كل رد.</p>
+        </div>
+
+        <form class="request-form" id="replyForm">
+          <div class="form-grid form-grid-single">
+            <label><span>نص الرد</span>
+              <textarea name="body" placeholder="اكتب ردك هنا" required rows="4"></textarea>
+            </label>
+            <label><span>مرفق (ملف واحد فقط)</span>
+              <input type="file" id="replyAttachment" accept="image/*,.pdf" />
+            </label>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary wide">إرسال الرد</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="complaint-closed-banner hidden" id="closedBanner">
+        <p id="closedBannerText">—</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/storage.js"></script>
+  <script src="assets/form-fields.js"></script>
+  <script src="assets/complaints.js"></script>
+  <script src="assets/app-tabs.js"></script>
+  <script>
+    const session = requireAuth();
+    const params = new URLSearchParams(window.location.search);
+    const complaintId = params.get('id');
+    let complaint = complaintId ? getComplaint(complaintId) : null;
+
+    if (!complaint || complaint.phone !== session.phone) {
+      window.location.href = 'complaint.html';
+    }
+
+    const replySection = document.getElementById('replySection');
+    const closedBanner = document.getElementById('closedBanner');
+    const replyForm = document.getElementById('replyForm');
+
+    initFormEnhancements(replyForm);
+
+    function renderComplaintDetail() {
+      complaint = getComplaint(complaintId);
+      document.getElementById('complaintTitle').textContent = 'شكوى ' + complaint.id;
+      document.getElementById('complaintId').textContent = complaint.id;
+      document.getElementById('complaintStatus').innerHTML = renderComplaintStatusBadge(complaint.status);
+      document.getElementById('complaintMeta').textContent =
+        `تاريخ الإنشاء: ${formatComplaintDate(complaint.createdAt)}` +
+        (complaint.closedAt ? ` · تاريخ الإغلاق: ${formatComplaintDate(complaint.closedAt)}` : '');
+
+      document.getElementById('replyThread').innerHTML = renderReplyThread(complaint.replies);
+
+      if (complaint.status === COMPLAINT_STATUS.OPEN) {
+        replySection.classList.remove('hidden');
+        closedBanner.classList.add('hidden');
+      } else {
+        replySection.classList.add('hidden');
+        closedBanner.classList.remove('hidden');
+        document.getElementById('closedBannerText').textContent =
+          complaint.status === COMPLAINT_STATUS.RESOLVED
+            ? 'تمت معالجة هذه الشكوى وإغلاقها من قبل الإدارة.'
+            : 'تم رفض هذه الشكوى وإغلاقها من قبل الإدارة.';
+        closedBanner.className = `complaint-closed-banner banner-${complaint.status}`;
+      }
+    }
+
+    replyForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const body = replyForm.body.value.trim();
+      if (!body) return;
+
+      const attachmentName = readSingleAttachment(document.getElementById('replyAttachment'));
+      addComplaintReply(complaint.id, {
+        author: 'applicant',
+        body,
+        attachmentName,
+      });
+
+      replyForm.reset();
+      renderComplaintDetail();
+    });
+
+    renderComplaintDetail();
+  </script>
+</body>
+</html>

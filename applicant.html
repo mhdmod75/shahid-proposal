@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>بيانات مقدم الطلب | منصة شهيد</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="app-body">
+  <div class="app-shell">
+    <header class="app-header">
+      <a href="home.html" class="app-back" aria-label="العودة">→</a>
+      <div class="app-header-text">
+        <p class="brand-tag">منصة شهيد</p>
+        <h1>بيانات مقدم الطلب</h1>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <section class="form-card app-card">
+        <div class="section-heading">
+          <p class="eyebrow">التسجيل لأول مرة</p>
+          <h3>أدخل بياناتك الشخصية</h3>
+          <p class="section-desc">هذه البيانات تُعبأ مرة واحدة فقط عند أول تسجيل دخول.</p>
+        </div>
+
+        <form class="applicant-form" id="applicantForm">
+          <datalist id="syria-locations"></datalist>
+
+          <div class="form-grid form-grid-single">
+            <label><span>الاسم الأول</span>
+              <input type="text" name="firstName" placeholder="الاسم الأول" required data-required-track />
+            </label>
+            <label><span>اسم الأب</span>
+              <input type="text" name="fatherName" placeholder="اسم الأب" required data-required-track />
+            </label>
+            <label><span>اسم العائلة</span>
+              <input type="text" name="familyName" placeholder="اسم العائلة" required data-required-track />
+            </label>
+            <label><span>الرقم الوطني</span>
+              <input type="text" name="nationalId" placeholder="الرقم الوطني" required data-required-track />
+            </label>
+            <label><span>رقم موبايل سوري</span>
+              <input type="tel" name="mobile" placeholder="09XXXXXXXXX" required data-required-track />
+            </label>
+            <label><span>رقم واتساب</span>
+              <input type="tel" name="whatsapp" placeholder="09XXXXXXXXX" required data-required-track />
+            </label>
+            <label><span>رقم تواصل بديل</span>
+              <input type="tel" name="altPhone" placeholder="09XXXXXXXXX" data-required-track />
+            </label>
+            <label><span>مكان الإقامة الحالي</span>
+              <input type="search" name="residence" list="syria-locations" data-syria-search placeholder="المدينة / البلدة / الحي" required data-required-track autocomplete="off" />
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary wide">حفظ والمتابعة</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/storage.js"></script>
+  <script src="assets/syria-locations.js"></script>
+  <script src="assets/form-fields.js"></script>
+  <script src="assets/form-wizard.js"></script>
+  <script>
+    const session = requireAuth();
+
+    initSyriaSearch();
+
+    const form = document.getElementById('applicantForm');
+    initFormEnhancements(form);
+    const mobileInput = form.querySelector('[name="mobile"]');
+    if (mobileInput && !mobileInput.value) {
+      mobileInput.value = session.phone;
+    }
+
+    const existingApplicant = getUser(session.phone)?.applicant;
+    if (existingApplicant) {
+      fillFormData(form, existingApplicant);
+    }
+
+    document.getElementById('applicantForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const applicant = collectFormData(form);
+      saveUser(session.phone, { applicant, martyrs: getMartyrs(session.phone) });
+      window.location.href = 'home.html';
+    });
+  </script>
+</body>
+</html>

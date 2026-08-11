@@ -2,49 +2,96 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>الشكاوى | منصة شهيد</title>
   <link rel="stylesheet" href="assets/style.css" />
 </head>
-<body>
-  <div class="page-shell">
-    <header class="topbar">
-      <div class="brand">
-        <img src="assets/img/logo_new_syria.svg" alt="شعار منصة شهيد" class="brand-logo" />
-        <div>
-          <p class="brand-tag">منصة شهيد</p>
-          <h1>تقديم شكوى</h1>
-        </div>
+<body class="app-body">
+  <div class="app-shell" data-tabbar="complaint">
+    <header class="app-header">
+      <img src="assets/img/logo_new_syria.svg" alt="شعار منصة شهيد" class="app-logo" />
+      <div class="app-header-text">
+        <p class="brand-tag">منصة شهيد</p>
+        <h1>الشكاوى</h1>
       </div>
-      <nav class="page-nav" aria-label="التنقل بين الصفحات">
-        <a href="index.html" class="nav-link">الرئيسية</a>
-        <a href="login.html" class="nav-link">تسجيل الدخول</a>
-        <a href="request.html" class="nav-link">الاستمارة</a>
-        <a href="complaint.html" class="nav-link active">الشكاوى</a>
-        <a href="status.html" class="nav-link">حالة الطلب</a>
-      </nav>
     </header>
 
-    <main class="page-center">
-      <section class="form-card">
+    <main class="app-main">
+      <section class="section-heading">
+        <p class="eyebrow">مسار مستقل</p>
+        <h3>شكاويي</h3>
+        <p class="section-desc">يمكنك متابعة المحادثة مع الإدارة على كل شكوى. لا تُغلق الشكوى إلا يدوياً من قبل الإدارة.</p>
+        <p class="section-desc demo-admin-link"><a href="admin-complaints.html">لوحة الإدارة (للعرض)</a></p>
+      </section>
+
+      <div id="complaintsList" class="complaints-list"></div>
+
+      <div class="empty-state hidden" id="emptyComplaints">
+        <div class="empty-icon">✉️</div>
+        <p>لم تُقدّم أي شكوى بعد. استخدم الزر أدناه لبدء شكوى جديدة.</p>
+      </div>
+
+      <section class="form-card app-card" id="newComplaintSection">
         <div class="section-heading">
-          <p class="eyebrow">المرحلة الثانية</p>
-          <h3>نموذج تقديم شكوى منفصل</h3>
+          <h3 id="newComplaintTitle">شكوى جديدة</h3>
         </div>
 
-        <form class="request-form">
-          <div class="form-grid">
-            <label><span>وصف الشكوى</span><textarea placeholder="يرجى توضيح المشكلة التي تريد رفعها"></textarea></label>
-            <label><span>الملفات المرفقة (اختياري)</span><input type="file" multiple /></label>
+        <form class="request-form" id="complaintForm">
+          <div class="form-grid form-grid-single">
+            <label><span>نص الشكوى</span>
+              <textarea name="details" placeholder="يرجى توضيح المشكلة التي تريد رفعها" required rows="5"></textarea>
+            </label>
+            <label><span>مرفق (ملف واحد فقط)</span>
+              <input type="file" id="complaintAttachment" accept="image/*,.pdf" />
+            </label>
           </div>
 
           <div class="form-actions">
-            <button type="submit" class="btn btn-primary">إرسال الشكوى</button>
-            <a href="status.html" class="btn btn-secondary">متابعة الحالة</a>
+            <button type="submit" class="btn btn-primary wide">إرسال الشكوى</button>
           </div>
         </form>
       </section>
     </main>
   </div>
+
+  <script src="assets/storage.js"></script>
+  <script src="assets/form-fields.js"></script>
+  <script src="assets/complaints.js"></script>
+  <script src="assets/app-tabs.js"></script>
+  <script>
+    const session = requireAuth();
+    const listEl = document.getElementById('complaintsList');
+    const emptyEl = document.getElementById('emptyComplaints');
+    const form = document.getElementById('complaintForm');
+
+    initFormEnhancements(form);
+
+    function renderComplaints() {
+      const complaints = getComplaints(session.phone);
+      listEl.innerHTML = '';
+
+      if (complaints.length === 0) {
+        emptyEl.classList.remove('hidden');
+        return;
+      }
+
+      emptyEl.classList.add('hidden');
+      complaints.forEach(complaint => {
+        listEl.insertAdjacentHTML('beforeend', renderComplaintListItem(complaint));
+      });
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const details = form.details.value.trim();
+      if (!details) return;
+
+      const attachmentName = readSingleAttachment(document.getElementById('complaintAttachment'));
+      const complaint = createComplaint(session.phone, details, attachmentName);
+      window.location.href = 'complaint-detail.html?id=' + complaint.id;
+    });
+
+    renderComplaints();
+  </script>
 </body>
 </html>
