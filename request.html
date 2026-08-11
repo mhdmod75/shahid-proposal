@@ -33,6 +33,7 @@
         </div>
 
         <form class="request-form">
+          <datalist id="syria-locations"></datalist>
           <div class="step-indicator" aria-label="مؤشر التقدم في الاستمارة">
             <span class="active" data-step-indicator="1">1. مقدم الطلب</span>
             <span data-step-indicator="2">2. الشهيد</span>
@@ -79,8 +80,8 @@
                   <option>طرطوس</option>
                 </select>
               </label>
-              <label><span>المنطقة أو المحافظة</span><input type="text" placeholder="المنطقة" /></label>
-              <label><span>مكان الإقامة الحالي</span><input type="text" placeholder="المدينة/البلدة/الحي" /></label>
+              <label><span>المنطقة أو المحافظة</span><input type="search" list="syria-locations" data-syria-search placeholder="المنطقة أو المحافظة" autocomplete="off" /></label>
+              <label><span>مكان الإقامة الحالي</span><input type="search" list="syria-locations" data-syria-search placeholder="المدينة/البلدة/الحي" autocomplete="off" /></label>
               <label><span>عدد الشهداء المرتبطين بالطلب</span>
                 <select id="martyrCount">
                   <option value="1">شهيد واحد</option>
@@ -97,12 +98,24 @@
               <label><span>الاسم الأول للشهيد</span><input type="text" placeholder="الاسم الأول" /></label>
               <label><span>اسم الأب للشهيد</span><input type="text" placeholder="اسم الأب" /></label>
               <label><span>اسم عائلة الشهيد</span><input type="text" placeholder="اسم العائلة" /></label>
-              <label><span>الاسم الحركي أو الكنية</span><input type="text" placeholder="إن وجد" /></label>
+              <label><span>الاسم الحركي أو اللقب</span><input type="text" placeholder="إن وجد" /></label>
               <label><span>الرقم الوطني للشهيد</span><input type="text" placeholder="إن توفر" /></label>
               <label><span>اسم والدة الشهيد</span><input type="text" placeholder="الاسم الأول فقط" /></label>
-              <label><span>سنة الميلاد</span><input type="text" placeholder="مثال: 1990" /></label>
-              <label><span>شهر الميلاد</span><input type="text" placeholder="مثال: كانون الثاني" /></label>
-              <label><span>يوم الميلاد</span><input type="text" placeholder="مثال: 15" /></label>
+              <label><span>يوم الميلاد</span>
+                <select id="birthDay">
+                  <option value="">اليوم</option>
+                </select>
+              </label>
+              <label><span>شهر الميلاد</span>
+                <select id="birthMonth">
+                  <option value="">الشهر</option>
+                </select>
+              </label>
+              <label><span>سنة الميلاد</span>
+                <select id="birthYear">
+                  <option value="">السنة</option>
+                </select>
+              </label>
               <label><span>محافظة الأصل</span>
                 <select>
                   <option>دمشق</option>
@@ -121,7 +134,7 @@
                   <option>طرطوس</option>
                 </select>
               </label>
-              <label><span>مكان الولادة</span><input type="text" placeholder="المدينة/المنطقة" /></label>
+              <label><span>مكان الولادة</span><input type="search" list="syria-locations" data-syria-search placeholder="المدينة فقط" autocomplete="off" /></label>
               <label><span>الحالة الاجتماعية وقت الاستشهاد</span>
                 <select>
                   <option>أعزب</option>
@@ -158,9 +171,21 @@
           <section class="form-section" data-step="3">
             <h4>القسم الثالث: بيانات الاستشهاد</h4>
             <div class="form-grid">
-              <label><span>سنة الاستشهاد</span><input type="text" placeholder="مثال: 2020" /></label>
-              <label><span>شهر الاستشهاد</span><input type="text" placeholder="مثال: كانون الثاني" /></label>
-              <label><span>يوم الاستشهاد</span><input type="text" placeholder="مثال: 10" /></label>
+                <label><span>يوم الاستشهاد</span>
+                <select id="deathDay">
+                  <option value="">اليوم</option>
+                </select>
+              </label>
+              <label><span>شهر الاستشهاد</span>
+                <select id="deathMonth">
+                  <option value="">الشهر</option>
+                </select>
+              </label>
+              <label><span>سنة الاستشهاد</span>
+                <select id="deathYear">
+                  <option value="">السنة</option>
+                </select>
+              </label>
               <label><span>محافظة الاستشهاد</span>
                 <select>
                   <option>دمشق</option>
@@ -179,7 +204,7 @@
                   <option>طرطوس</option>
                 </select>
               </label>
-              <label><span>مكان الاستشهاد</span><input type="text" placeholder="المدينة/المنطقة/الموقع" /></label>
+              <label><span>مكان الاستشهاد</span><input type="search" list="syria-locations" data-syria-search placeholder="المنطقة فقط" autocomplete="off" /></label>
               <label><span>الظرف الذي وقع فيه الاستشهاد</span>
                 <select>
                   <option>معركة أو اشتباك مباشر</option>
@@ -215,6 +240,7 @@
               <label><span>وثيقة أو سجل صادر عن الفصيل</span><input type="file" /></label>
               <label><span>بيان أو نعي استشهاد</span><input type="file" /></label>
               <label><span>صور أو مقاطع أو منشورات</span><input type="file" multiple /></label>
+              <label><span>غير ذلك</span><input type="file" /></label>
               <label><span>ملاحظات حول الوثائق</span><input type="text" placeholder="تفاصيل إضافية" /></label>
             </div>
           </section>
@@ -270,25 +296,6 @@
                 </div>
               </div>
 
-              <div class="witness-card">
-                <h5>الشاهد الثالث (اختياري)</h5>
-                <div class="form-grid">
-                  <label><span>اسم الشاهد الثالث</span><input type="text" placeholder="الاسم الثلاثي" /></label>
-                  <label><span>الرقم الوطني للشاهد الثالث</span><input type="text" placeholder="الرقم الوطني" /></label>
-                  <label><span>رقم موبايل الشاهد الثالث</span><input type="tel" placeholder="09XXXXXXXXX" /></label>
-                  <label><span>أساس المعرفة بالشاهد الثالث</span>
-                    <select>
-                      <option>كان قائده أو مسؤوله المباشر</option>
-                      <option>عمل أو خدم معه ضمن الفصيل</option>
-                      <option>شارك معه في معركة أو مهمة</option>
-                      <option>شاهد واقعة الاستشهاد</option>
-                      <option>شارك في إسعافه أو نقل جثمانه أو دفنه</option>
-                      <option>لديه معرفة مباشرة أخرى</option>
-                    </select>
-                  </label>
-                  <label><span>جهة العمل أو المؤسسة التي ينتمي إليها</span><input type="text" placeholder="اختياري - إن وجدت" /></label>
-                </div>
-              </div>
             </div>
           </section>
 
@@ -297,7 +304,6 @@
             <div class="form-grid">
               <label><span>أقر بأن البيانات صحيحة</span><select><option>نعم</option><option>لا</option></select></label>
               <label><span>تم الحصول على موافقة الشهود</span><select><option>نعم</option><option>لا</option></select></label>
-              <label><span>ألتزم بالانضمام إلى مجموعة واتساب</span><select><option>نعم</option><option>لا</option></select></label>
             </div>
           </section>
 
@@ -361,12 +367,288 @@
       }
     });
 
+    function populateDateSelects() {
+      const birthDay = document.getElementById('birthDay');
+      const birthMonth = document.getElementById('birthMonth');
+      const birthYear = document.getElementById('birthYear');
+      const deathDay = document.getElementById('deathDay');
+      const deathMonth = document.getElementById('deathMonth');
+      const deathYear = document.getElementById('deathYear');
+      const currentYear = new Date().getFullYear();
+
+      for (let day = 1; day <= 31; day += 1) {
+        const optionDay = document.createElement('option');
+        optionDay.value = day;
+        optionDay.textContent = day;
+        birthDay.appendChild(optionDay);
+        deathDay.appendChild(optionDay.cloneNode(true));
+      }
+
+      for (let month = 1; month <= 12; month += 1) {
+        const optionMonth = document.createElement('option');
+        optionMonth.value = month;
+        optionMonth.textContent = month;
+        birthMonth.appendChild(optionMonth);
+        deathMonth.appendChild(optionMonth.cloneNode(true));
+      }
+
+      for (let year = currentYear; year >= 1900; year -= 1) {
+        const optionYear = document.createElement('option');
+        optionYear.value = year;
+        optionYear.textContent = year;
+        birthYear.appendChild(optionYear);
+        deathYear.appendChild(optionYear.cloneNode(true));
+      }
+    }
+
+    const syriaLocations = [
+      { label: 'دمشق - الميدان' },
+      { label: 'دمشق - باب توما' },
+      { label: 'دمشق - القنوات' },
+      { label: 'دمشق - المزة' },
+      { label: 'دمشق - برزة' },
+      { label: 'دمشق - جمال الدين' },
+      { label: 'دمشق - قصقص' },
+      { label: 'دمشق - ساحة الأمويين' },
+      { label: 'دمشق - سوق ساروجة' },
+      { label: 'دمشق - باب السلامة' },
+      { label: 'دمشق - كفر سوسة' },
+      { label: 'دمشق - ركن الدين' },
+      { label: 'دمشق - القدم' },
+      { label: 'دمشق - حي السفارات' },
+      { label: 'دمشق - السيدة زينب' },
+      { label: 'ريف دمشق - دوما' },
+      { label: 'ريف دمشق - الزبداني' },
+      { label: 'ريف دمشق - الغوطة الشرقية' },
+      { label: 'ريف دمشق - حرستا' },
+      { label: 'ريف دمشق - سقبا' },
+      { label: 'ريف دمشق - عربين' },
+      { label: 'ريف دمشق - زملكا' },
+      { label: 'ريف دمشق - القدس' },
+      { label: 'ريف دمشق - قدسيا' },
+      { label: 'ريف دمشق - داريا' },
+      { label: 'ريف دمشق - المعضمية' },
+      { label: 'ريف دمشق - المرج' },
+      { label: 'ريف دمشق - القرى' },
+      { label: 'ريف دمشق - دير الغصون' },
+      { label: 'ريف دمشق - أني' },
+      { label: 'ريف دمشق - السبينة' },
+      { label: 'ريف دمشق - بيت سحم' },
+      { label: 'ريف دمشق - يبرود' },
+      { label: 'ريف دمشق - النبك' },
+      { label: 'ريف دمشق - قطنا' },
+      { label: 'ريف دمشق - النشابية' },
+      { label: 'حلب - حلب المدينة' },
+      { label: 'حلب - الشيخ مقصود' },
+      { label: 'حلب - كفر حمرة' },
+      { label: 'حلب - الأتارب' },
+      { label: 'حلب - سلقين' },
+      { label: 'حلب - الباب' },
+      { label: 'حلب - منبج' },
+      { label: 'حلب - إعزاز' },
+      { label: 'حلب - جرابلس' },
+      { label: 'حلب - عفرين' },
+      { label: 'حلب - الراعي' },
+      { label: 'حلب - تل رفعت' },
+      { label: 'حلب - بزاعة' },
+      { label: 'حلب - عزيزي' },
+      { label: 'حلب - مارع' },
+      { label: 'حلب - جرمانا' },
+      { label: 'حلب - علوك' },
+      { label: 'حلب - الأتارب' },
+      { label: 'حلب - حريتان' },
+      { label: 'حلب - السفيرة' },
+      { label: 'حلب - نبل' },
+      { label: 'حلب - الزهراء' },
+      { label: 'حماة - حماة' },
+      { label: 'حماة - السلمية' },
+      { label: 'حماة - محردة' },
+      { label: 'حماة - السقيلبية' },
+      { label: 'حماة - الحولة' },
+      { label: 'حماة - مصياف' },
+      { label: 'حماة - الرستن' },
+      { label: 'حماة - تل سمعان' },
+      { label: 'حماة - صوران' },
+      { label: 'حماة - كفير زيتا' },
+      { label: 'حماة - الحمراء' },
+      { label: 'حماة - سلمية' },
+      { label: 'حماة - سفيرة' },
+      { label: 'حماة - الغاب' },
+      { label: 'حمص - حمص' },
+      { label: 'حمص - تلبيسة' },
+      { label: 'حمص - المخرم' },
+      { label: 'حمص - الشنان' },
+      { label: 'حمص - القصير' },
+      { label: 'حمص - الحولة' },
+      { label: 'حمص - تدمر' },
+      { label: 'حمص - السخنة' },
+      { label: 'حمص - مدينة الكرامة' },
+      { label: 'حمص - الرستن' },
+      { label: 'حمص - تل دو' },
+      { label: 'حمص - كفرلاها' },
+      { label: 'حمص - السخنة' },
+      { label: 'حمص - بولين' },
+      { label: 'اللاذقية - اللاذقية' },
+      { label: 'اللاذقية - جبلة' },
+      { label: 'اللاذقية - صلنفة' },
+      { label: 'اللاذقية - بانياس' },
+      { label: 'اللاذقية - صافيتا' },
+      { label: 'اللاذقية - كسب' },
+      { label: 'اللاذقية - سلمى' },
+      { label: 'اللاذقية - الحفة' },
+      { label: 'اللاذقية - جبال اللاذقية' },
+      { label: 'اللاذقية - الدريكيش' },
+      { label: 'اللاذقية - القدية' },
+      { label: 'اللاذقية - القرداحة' },
+      { label: 'اللاذقية - ربيعة' },
+      { label: 'اللاذقية - قبر عاتكة' },
+      { label: 'إدلب - إدلب' },
+      { label: 'إدلب - خان شيخون' },
+      { label: 'إدلب - معرة النعمان' },
+      { label: 'إدلب - سراقب' },
+      { label: 'إدلب - جسر الشغور' },
+      { label: 'إدلب - أريحا' },
+      { label: 'إدلب - الدانا' },
+      { label: 'إدلب - رأس العين' },
+      { label: 'إدلب - سرمين' },
+      { label: 'إدلب - كفرنبل' },
+      { label: 'إدلب - أرمناز' },
+      { label: 'إدلب - معرشمارين' },
+      { label: 'إدلب - سجنة' },
+      { label: 'إدلب - تفتناز' },
+      { label: 'إدلب - سرمدا' },
+      { label: 'إدلب - كفرتخاريم' },
+      { label: 'إدلب - احسم' },
+      { label: 'إدلب - بنش' },
+      { label: 'إدلب - حارم' },
+      { label: 'إدلب - معرة مصرين' },
+      { label: 'درعا - درعا' },
+      { label: 'درعا - الصنمين' },
+      { label: 'درعا - إنخل' },
+      { label: 'درعا - نوى' },
+      { label: 'درعا - بصرى الشام' },
+      { label: 'درعا - طفس' },
+      { label: 'درعا - داعل' },
+      { label: 'درعا - جاسم' },
+      { label: 'درعا - صيدا' },
+      { label: 'درعا - عتمان' },
+      { label: 'درعا - ابطع' },
+      { label: 'درعا - النعيمة' },
+      { label: 'درعا - جلين' },
+      { label: 'درعا - الحراك' },
+      { label: 'السويداء - السويداء' },
+      { label: 'السويداء - شهبا' },
+      { label: 'السويداء - صلخد' },
+      { label: 'السويداء - ضانا' },
+      { label: 'السويداء - بصيرة' },
+      { label: 'السويداء - سعسع' },
+      { label: 'السويداء - المشنف' },
+      { label: 'السويداء - بصرى الحر' },
+      { label: 'السويداء - الشجرة' },
+      { label: 'القنيطرة - القنيطرة' },
+      { label: 'القنيطرة - معربة' },
+      { label: 'القنيطرة - جبا' },
+      { label: 'القنيطرة - خان أرنبة' },
+      { label: 'القنيطرة - حضر' },
+      { label: 'القنيطرة - الصنمين' },
+      { label: 'القنيطرة - بقعاثا' },
+      { label: 'القنيطرة - بيت جن' },
+      { label: 'القنيطرة - المسيفرة' },
+      { label: 'دير الزور - دير الزور' },
+      { label: 'دير الزور - البوكمال' },
+      { label: 'دير الزور - الميادين' },
+      { label: 'دير الزور - الشحيل' },
+      { label: 'دير الزور - موحسن' },
+      { label: 'دير الزور - غرانيج' },
+      { label: 'دير الزور - الصالحية' },
+      { label: 'دير الزور - الجفرة' },
+      { label: 'دير الزور - الصور' },
+      { label: 'دير الزور - حوايج' },
+      { label: 'دير الزور - معدان' },
+      { label: 'الرقة - الرقة' },
+      { label: 'الرقة - الطبقة' },
+      { label: 'الرقة - منبج' },
+      { label: 'الرقة - تل أبيض' },
+      { label: 'الرقة - عين عيسى' },
+      { label: 'الرقة - الرصافة' },
+      { label: 'الرقة - النعيمة' },
+      { label: 'الرقة - الحسينية' },
+      { label: 'الحسكة - الحسكة' },
+      { label: 'الحسكة - القامشلي' },
+      { label: 'الحسكة - عامودا' },
+      { label: 'الحسكة - رأس العين' },
+      { label: 'الحسكة - المالكية' },
+      { label: 'الحسكة - تل تمر' },
+      { label: 'الحسكة - كوباني' },
+      { label: 'الحسكة - شنكال' },
+      { label: 'الحسكة - ديريك' },
+      { label: 'الحسكة - اليعربية' },
+      { label: 'طرطوس - طرطوس' },
+      { label: 'طرطوس - بانياس' },
+      { label: 'طرطوس - صافيتا' },
+      { label: 'طرطوس - جبلة' },
+      { label: 'طرطوس - الدريكيش' },
+      { label: 'طرطوس - القدية' },
+      { label: 'طرطوس - سلحب' },
+      { label: 'طرطوس - الحفة' },
+      { label: 'طرطوس - بسمال' },
+      { label: 'طرطوس - الحرف' },
+      { label: 'طرطوس - جباب' },      { label: 'الزهراء - حلب' },
+      { label: 'الزهراء - إدلب' },
+      { label: 'الزهراء - ريف دمشق' },
+      { label: 'الحمرا - حمص' },
+      { label: 'الحمرا - حماة' },
+      { label: 'الصالحية - دير الزور' },
+      { label: 'الصالحية - حلب' },
+      { label: 'النعيمة - الرقة' },
+      { label: 'النعيمة - دير الزور' },
+      { label: 'بانا - ريف دمشق' },
+      { label: 'بانا - حماة' },
+      { label: 'الرستن - حماة' },
+      { label: 'الرستن - ريف دمشق' },      { label: 'سوريا - دمشق' },
+      { label: 'سوريا - ريف دمشق' },
+      { label: 'سوريا - حلب' },
+      { label: 'سوريا - حماة' },
+      { label: 'سوريا - حمص' },
+      { label: 'سوريا - اللاذقية' },
+      { label: 'سوريا - إدلب' },
+      { label: 'سوريا - درعا' },
+      { label: 'سوريا - القنيطرة' },
+      { label: 'سوريا - السويداء' },
+      { label: 'سوريا - دير الزور' },
+      { label: 'سوريا - الرقة' },
+      { label: 'سوريا - الحسكة' },
+      { label: 'سوريا - طرطوس' }
+    ];
+
+    function updateSyriaSuggestions(input) {
+      const list = document.getElementById(input.getAttribute('list'));
+      if (!list) return;
+      const query = input.value.trim().toLowerCase();
+      list.innerHTML = '';
+      if (!query) return;
+      const matches = syriaLocations
+        .filter(item => item.label.toLowerCase().includes(query))
+        .slice(0, 25);
+      matches.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.label;
+        option.label = item.label;
+        list.appendChild(option);
+      });
+    }
+
+    document.querySelectorAll('input[data-syria-search]').forEach(input => {
+      input.addEventListener('input', () => updateSyriaSuggestions(input));
+    });
+
     submitButton.addEventListener('click', () => {
       window.location.href = 'status.html';
     });
 
     martyrCount?.addEventListener('change', updateMartyrBlocks);
 
+    populateDateSelects();
     updateStep();
     updateMartyrBlocks();
   </script>
