@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الاستمارة | منصة شهيد</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand">
+        <img src="assets/img/logo_new_syria.svg" alt="شعار منصة شهيد" class="brand-logo" />
+        <div>
+          <p class="brand-tag">منصة شهيد</p>
+          <h1>استمارة الحصر الأولي</h1>
+        </div>
+      </div>
+      <nav class="page-nav" aria-label="التنقل بين الصفحات">
+        <a href="index.html" class="nav-link">الرئيسية</a>
+        <a href="login.html" class="nav-link">تسجيل الدخول</a>
+        <a href="request.html" class="nav-link active">الاستمارة</a>
+        <a href="complaint.html" class="nav-link">الشكاوى</a>
+        <a href="status.html" class="nav-link">حالة الطلب</a>
+      </nav>
+    </header>
+
+    <main class="page-center">
+      <section class="form-card">
+        <div class="section-heading">
+          <p class="eyebrow">المرحلة الثانية</p>
+          <h3>استمارة الحصر الأولي لبيانات الشهداء غير المسجلين</h3>
+        </div>
+
+        <form class="request-form">
+          <div class="step-indicator" aria-label="مؤشر التقدم في الاستمارة">
+            <span class="active" data-step-indicator="1">1. مقدم الطلب</span>
+            <span data-step-indicator="2">2. الشهيد</span>
+            <span data-step-indicator="3">3. الاستشهاد</span>
+            <span data-step-indicator="4">4. الوثائق</span>
+            <span data-step-indicator="5">5. الشهود</span>
+            <span data-step-indicator="6">6. الإقرار</span>
+          </div>
+
+          <section class="form-section active" data-step="1">
+            <h4>القسم الأول: بيانات مقدم الطلب</h4>
+            <div class="form-grid">
+              <label><span>صلة مقدم الطلب</span>
+                <select>
+                  <option>الأب</option>
+                  <option>الأم</option>
+                  <option>الزوجة</option>
+                  <option>الابن</option>
+                  <option>الابنة</option>
+                </select>
+              </label>
+              <label><span>الاسم الأول</span><input type="text" placeholder="الاسم الأول" /></label>
+              <label><span>اسم الأب</span><input type="text" placeholder="اسم الأب" /></label>
+              <label><span>اسم العائلة</span><input type="text" placeholder="اسم العائلة" /></label>
+              <label><span>الرقم الوطني</span><input type="text" placeholder="الرقم الوطني" /></label>
+              <label><span>رقم موبايل سوري</span><input type="tel" placeholder="09XXXXXXXXX" /></label>
+              <label><span>رقم واتساب</span><input type="tel" placeholder="09XXXXXXXXX" /></label>
+              <label><span>رقم تواصل بديل</span><input type="tel" placeholder="09XXXXXXXXX" /></label>
+              <label><span>محافظة الإقامة الحالية</span>
+                <select>
+                  <option>دمشق</option>
+                  <option>ريف دمشق</option>
+                  <option>حلب</option>
+                  <option>حماة</option>
+                  <option>حمص</option>
+                  <option>اللاذقية</option>
+                  <option>إدلب</option>
+                  <option>درعا</option>
+                  <option>القنيطرة</option>
+                  <option>السويداء</option>
+                  <option>دير الزور</option>
+                  <option>الرقة</option>
+                  <option>الحسكة</option>
+                  <option>طرطوس</option>
+                </select>
+              </label>
+              <label><span>المنطقة أو المحافظة</span><input type="text" placeholder="المنطقة" /></label>
+              <label><span>مكان الإقامة الحالي</span><input type="text" placeholder="المدينة/البلدة/الحي" /></label>
+              <label><span>عدد الشهداء المرتبطين بالطلب</span>
+                <select id="martyrCount">
+                  <option value="1">شهيد واحد</option>
+                  <option value="2">شهيدان</option>
+                  <option value="3">ثلاثة شهداء</option>
+                </select>
+              </label>
+            </div>
+          </section>
+
+          <section class="form-section" data-step="2">
+            <h4>القسم الثاني: بيانات الاستمارة للشهيد أو الشهداء</h4>
+            <div class="form-grid">
+              <label><span>الاسم الأول للشهيد</span><input type="text" placeholder="الاسم الأول" /></label>
+              <label><span>اسم الأب للشهيد</span><input type="text" placeholder="اسم الأب" /></label>
+              <label><span>اسم عائلة الشهيد</span><input type="text" placeholder="اسم العائلة" /></label>
+              <label><span>الاسم الحركي أو الكنية</span><input type="text" placeholder="إن وجد" /></label>
+              <label><span>الرقم الوطني للشهيد</span><input type="text" placeholder="إن توفر" /></label>
+              <label><span>اسم والدة الشهيد</span><input type="text" placeholder="الاسم الأول فقط" /></label>
+              <label><span>سنة الميلاد</span><input type="text" placeholder="مثال: 1990" /></label>
+              <label><span>شهر الميلاد</span><input type="text" placeholder="مثال: كانون الثاني" /></label>
+              <label><span>يوم الميلاد</span><input type="text" placeholder="مثال: 15" /></label>
+              <label><span>محافظة الأصل</span>
+                <select>
+                  <option>دمشق</option>
+                  <option>ريف دمشق</option>
+                  <option>حلب</option>
+                  <option>حماة</option>
+                  <option>حمص</option>
+                  <option>اللاذقية</option>
+                  <option>إدلب</option>
+                  <option>درعا</option>
+                  <option>القنيطرة</option>
+                  <option>السويداء</option>
+                  <option>دير الزور</option>
+                  <option>الرقة</option>
+                  <option>الحسكة</option>
+                  <option>طرطوس</option>
+                </select>
+              </label>
+              <label><span>مكان الولادة</span><input type="text" placeholder="المدينة/المنطقة" /></label>
+              <label><span>الحالة الاجتماعية وقت الاستشهاد</span>
+                <select>
+                  <option>أعزب</option>
+                  <option>متزوج</option>
+                  <option>مطلق</option>
+                  <option>أرمل</option>
+                </select>
+              </label>
+              <label><span>عدد أبناء الشهيد وبناته</span><input type="number" placeholder="0" /></label>
+              <label><span>الصفة أو المهمة الأساسية ضمن الفصيل</span><input type="text" placeholder="المهمة أو الصفة" /></label>
+            </div>
+            <div class="martyr-stack">
+              <div class="witness-card martyr-card" data-martyr-block="2">
+                <h5>بيانات الشهيد الإضافي الثاني</h5>
+                <div class="form-grid">
+                  <label><span>الاسم الأول للشهيد الثاني</span><input type="text" placeholder="الاسم الأول" /></label>
+                  <label><span>اسم الأب للشهيد الثاني</span><input type="text" placeholder="اسم الأب" /></label>
+                  <label><span>اسم عائلة الشهيد الثاني</span><input type="text" placeholder="اسم العائلة" /></label>
+                  <label><span>الصفة أو المهمة</span><input type="text" placeholder="المهمة أو الصفة" /></label>
+                </div>
+              </div>
+              <div class="witness-card martyr-card hidden" data-martyr-block="3">
+                <h5>بيانات الشهيد الإضافي الثالث</h5>
+                <div class="form-grid">
+                  <label><span>الاسم الأول للشهيد الثالث</span><input type="text" placeholder="الاسم الأول" /></label>
+                  <label><span>اسم الأب للشهيد الثالث</span><input type="text" placeholder="اسم الأب" /></label>
+                  <label><span>اسم عائلة الشهيد الثالث</span><input type="text" placeholder="اسم العائلة" /></label>
+                  <label><span>الصفة أو المهمة</span><input type="text" placeholder="المهمة أو الصفة" /></label>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="form-section" data-step="3">
+            <h4>القسم الثالث: بيانات الاستشهاد</h4>
+            <div class="form-grid">
+              <label><span>سنة الاستشهاد</span><input type="text" placeholder="مثال: 2020" /></label>
+              <label><span>شهر الاستشهاد</span><input type="text" placeholder="مثال: كانون الثاني" /></label>
+              <label><span>يوم الاستشهاد</span><input type="text" placeholder="مثال: 10" /></label>
+              <label><span>محافظة الاستشهاد</span>
+                <select>
+                  <option>دمشق</option>
+                  <option>ريف دمشق</option>
+                  <option>حلب</option>
+                  <option>حماة</option>
+                  <option>حمص</option>
+                  <option>اللاذقية</option>
+                  <option>إدلب</option>
+                  <option>درعا</option>
+                  <option>القنيطرة</option>
+                  <option>السويداء</option>
+                  <option>دير الزور</option>
+                  <option>الرقة</option>
+                  <option>الحسكة</option>
+                  <option>طرطوس</option>
+                </select>
+              </label>
+              <label><span>مكان الاستشهاد</span><input type="text" placeholder="المدينة/المنطقة/الموقع" /></label>
+              <label><span>الظرف الذي وقع فيه الاستشهاد</span>
+                <select>
+                  <option>معركة أو اشتباك مباشر</option>
+                  <option>الرباط على إحدى الجبهات</option>
+                  <option>تنفيذ مهمة قتالية</option>
+                  <option>التنقل إلى مهمة أو العودة منها</option>
+                  <option>التواجد في مقر الفصيل أو التشكيل</option>
+                  <option>التواجد في المنزل أو مكان الإقامة</option>
+                  <option>غير ذلك</option>
+                </select>
+              </label>
+              <label><span>كيفية وقوع الاستشهاد</span>
+                <select>
+                  <option>إصابة بطلق ناري</option>
+                  <option>قصف جوي</option>
+                  <option>قصف مدفعي أو صاروخي</option>
+                  <option>انفجار أو عبوة ناسفة أو لغم</option>
+                  <option>اغتيال</option>
+                  <option>التأثر بإصابة سابقة مرتبطة بالقتال</option>
+                  <option>حادث مرتبط بمهمة</option>
+                  <option>غير ذلك</option>
+                </select>
+              </label>
+            </div>
+          </section>
+
+          <section class="form-section" data-step="4">
+            <h4>القسم الرابع: الوثائق والأدلة المتوفرة</h4>
+            <div class="form-grid">
+              <label><span>هوية شخصية أو إخراج قيد</span><input type="file" /></label>
+              <label><span>بيان وفاة أو شهادة وفاة</span><input type="file" /></label>
+              <label><span>بيان عائلي أو دفتر عائلة</span><input type="file" /></label>
+              <label><span>وثيقة أو سجل صادر عن الفصيل</span><input type="file" /></label>
+              <label><span>بيان أو نعي استشهاد</span><input type="file" /></label>
+              <label><span>صور أو مقاطع أو منشورات</span><input type="file" multiple /></label>
+              <label><span>ملاحظات حول الوثائق</span><input type="text" placeholder="تفاصيل إضافية" /></label>
+            </div>
+          </section>
+
+          <section class="form-section" data-step="5">
+            <h4>القسم الخامس: بيانات الشهود</h4>
+            <div class="witness-stack">
+              <div class="witness-card">
+                <h5>الشاهد الأول</h5>
+                <div class="form-grid">
+                  <label><span>اسم الشاهد الأول</span><input type="text" placeholder="الاسم الثلاثي" /></label>
+                  <label><span>الرقم الوطني للشاهد الأول</span><input type="text" placeholder="الرقم الوطني" /></label>
+                  <label><span>رقم موبايل الشاهد الأول</span><input type="tel" placeholder="09XXXXXXXXX" /></label>
+                  <label><span>أساس المعرفة بالشاهد الأول</span>
+                    <select>
+                      <option>كان قائده أو مسؤوله المباشر</option>
+                      <option>عمل أو خدم معه ضمن الفصيل</option>
+                      <option>شارك معه في معركة أو مهمة</option>
+                      <option>شاهد واقعة الاستشهاد</option>
+                      <option>شارك في إسعافه أو نقل جثمانه أو دفنه</option>
+                      <option>لديه معرفة مباشرة أخرى</option>
+                    </select>
+                  </label>
+                  <label><span>جهة العمل داخل وزارة الدفاع</span><input type="text" placeholder="المكتب/الجهة" /></label>
+                  <label><span>الرقم الذاتي أو الوظيفي</span><input type="text" placeholder="الرقم" /></label>
+                </div>
+              </div>
+
+              <div class="witness-card">
+                <h5>الشاهد الثاني</h5>
+                <div class="form-grid">
+                  <label><span>اسم الشاهد الثاني</span><input type="text" placeholder="الاسم الثلاثي" /></label>
+                  <label><span>الرقم الوطني للشاهد الثاني</span><input type="text" placeholder="الرقم الوطني" /></label>
+                  <label><span>رقم موبايل الشاهد الثاني</span><input type="tel" placeholder="09XXXXXXXXX" /></label>
+                  <label><span>أساس المعرفة بالشاهد الثاني</span>
+                    <select>
+                      <option>كان قائده أو مسؤوله المباشر</option>
+                      <option>عمل أو خدم معه ضمن الفصيل</option>
+                      <option>شارك معه في معركة أو مهمة</option>
+                      <option>شاهد واقعة الاستشهاد</option>
+                      <option>شارك في إسعافه أو نقل جثمانه أو دفنه</option>
+                      <option>لديه معرفة مباشرة أخرى</option>
+                    </select>
+                  </label>
+                  <label><span>جهة عمل الشاهد الثاني</span>
+                    <select>
+                      <option>وزارة الدفاع</option>
+                      <option>وزارة الداخلية</option>
+                      <option>جهاز الاستخبارات العامة</option>
+                      <option>وزارة أو جهة حكومية أخرى</option>
+                    </select>
+                  </label>
+                </div>
+              </div>
+
+              <div class="witness-card">
+                <h5>الشاهد الثالث (اختياري)</h5>
+                <div class="form-grid">
+                  <label><span>اسم الشاهد الثالث</span><input type="text" placeholder="الاسم الثلاثي" /></label>
+                  <label><span>الرقم الوطني للشاهد الثالث</span><input type="text" placeholder="الرقم الوطني" /></label>
+                  <label><span>رقم موبايل الشاهد الثالث</span><input type="tel" placeholder="09XXXXXXXXX" /></label>
+                  <label><span>أساس المعرفة بالشاهد الثالث</span>
+                    <select>
+                      <option>كان قائده أو مسؤوله المباشر</option>
+                      <option>عمل أو خدم معه ضمن الفصيل</option>
+                      <option>شارك معه في معركة أو مهمة</option>
+                      <option>شاهد واقعة الاستشهاد</option>
+                      <option>شارك في إسعافه أو نقل جثمانه أو دفنه</option>
+                      <option>لديه معرفة مباشرة أخرى</option>
+                    </select>
+                  </label>
+                  <label><span>جهة العمل أو المؤسسة التي ينتمي إليها</span><input type="text" placeholder="اختياري - إن وجدت" /></label>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="form-section" data-step="6">
+            <h4>الإقرار والانضمام إلى مجموعة المتابعة</h4>
+            <div class="form-grid">
+              <label><span>أقر بأن البيانات صحيحة</span><select><option>نعم</option><option>لا</option></select></label>
+              <label><span>تم الحصول على موافقة الشهود</span><select><option>نعم</option><option>لا</option></select></label>
+              <label><span>ألتزم بالانضمام إلى مجموعة واتساب</span><select><option>نعم</option><option>لا</option></select></label>
+            </div>
+          </section>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" id="prevStep">السابق</button>
+            <button type="button" class="btn btn-primary" id="nextStep">التالي</button>
+            <button type="submit" class="btn btn-primary hidden" id="submitStep">حفظ البيانات</button>
+            <a href="status.html" class="btn btn-secondary">عرض حالة الطلب</a>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const sections = Array.from(document.querySelectorAll('.form-section'));
+    const indicators = Array.from(document.querySelectorAll('[data-step-indicator]'));
+    const prevButton = document.getElementById('prevStep');
+    const nextButton = document.getElementById('nextStep');
+    const submitButton = document.getElementById('submitStep');
+    const martyrCount = document.getElementById('martyrCount');
+    const martyrBlocks = Array.from(document.querySelectorAll('[data-martyr-block]'));
+    let currentStep = 1;
+
+    function updateStep() {
+      sections.forEach(section => {
+        const isActive = Number(section.dataset.step) === currentStep;
+        section.classList.toggle('active', isActive);
+      });
+
+      indicators.forEach(indicator => {
+        const isActive = Number(indicator.dataset.stepIndicator) === currentStep;
+        indicator.classList.toggle('active', isActive);
+      });
+
+      prevButton.classList.toggle('hidden', currentStep === 1);
+      nextButton.classList.toggle('hidden', currentStep === sections.length);
+      submitButton.classList.toggle('hidden', currentStep !== sections.length);
+    }
+
+    function updateMartyrBlocks() {
+      if (!martyrCount) return;
+      const count = Number(martyrCount.value || 1);
+      martyrBlocks.forEach(block => {
+        const blockNumber = Number(block.dataset.martyrBlock);
+        block.classList.toggle('hidden', blockNumber > count);
+      });
+    }
+
+    prevButton.addEventListener('click', () => {
+      if (currentStep > 1) {
+        currentStep -= 1;
+        updateStep();
+      }
+    });
+
+    nextButton.addEventListener('click', () => {
+      if (currentStep < sections.length) {
+        currentStep += 1;
+        updateStep();
+      }
+    });
+
+    submitButton.addEventListener('click', () => {
+      window.location.href = 'status.html';
+    });
+
+    martyrCount?.addEventListener('change', updateMartyrBlocks);
+
+    updateStep();
+    updateMartyrBlocks();
+  </script>
+</body>
+</html>

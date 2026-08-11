@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>منصة شهيد | proposal</title>
+  <meta name="description" content="اقتراح تصميم أولي لمنصة شهيد لتوثيق وتحقيق عوائل الشهداء وإصدار الحسابات والرواتب الشهرية لاحقًا" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <script src="assets/script.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand">
+        <img src="assets/img/logo_new_syria.svg" alt="شعار منصة شهيد" class="brand-logo" />
+        <div>
+          <p class="brand-tag">اقتراح منصّة رقمية</p>
+          <h1>منصة شهيد</h1>
+        </div>
+      </div>
+      <nav class="page-nav" aria-label="التنقل بين الصفحات">
+        <a href="index.html" class="nav-link active">الرئيسية</a>
+        <a href="login.html" class="nav-link">تسجيل الدخول</a>
+        <a href="request.html" class="nav-link">الاستمارة</a>
+        <a href="complaint.html" class="nav-link">الشكاوى</a>
+        <a href="status.html" class="nav-link">حالة الطلب</a>
+      </nav>
+    </header>
+
+    <main class="slides-shell">
+      <section class="slide active" id="slide-1">
+        <div class="slide-content">
+          <p class="eyebrow">Proposal – عرض رسمي للمقترح</p>
+          <h2>منصة شهيد</h2>
+          <p class="slide-lead">مقترح تطوير منصة رقمية لإدارة طلبات تسجيل الشهداء، رصد البيانات، تلقي الشكاوي، وإدارة القرار الإداري بطريقة منظمة وشفافة، مع الحفاظ على مستوى عالي من الأمان والموثوقية.</p>
+          <div class="slide-bullets">
+            <span>حل رقمي موثوق</span>
+            <span>تجربة مستخدم ميسرة</span>
+            <span>إدارة إدارية منضبطة</span>
+            <span>قابلية للتوسع</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-2">
+        <div class="slide-content">
+          <p class="eyebrow">المشكلة الحالية</p>
+          <h3>لماذا يحتاج هذا المشروع إلى حل رقمي؟</h3>
+          <div class="slide-grid">
+            <article class="slide-card">
+              <h4>التحول من العمل اليدوي</h4>
+              <p>تتطلب العمليات الحالية جمع البيانات وعرضها ومراجعتها يدويًا، ما يرفع احتمالية التشتت والاختلاف بين الملفات والقرارات.</p>
+            </article>
+            <article class="slide-card">
+              <h4>الاحتياج إلى شفافية</h4>
+              <p>من الضروري وجود نظام واضح يسجل كل طلب، كل قرار، وكل شكوى، حتى يتمكن المسؤولون من متابعة الحالة بدقة واحترافية.</p>
+            </article>
+            <article class="slide-card">
+              <h4>الحاجة إلى موثوقية عالية</h4>
+              <p>يجب أن يكون النظام قادرًا على حفظ البيانات بشكل آمن، مع التحقق من الهوية، وتحديد صلاحية المستخدم، وإدارة القرارات بشكل مستند إلى قواعد واضحة.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-3">
+        <div class="slide-content">
+          <p class="eyebrow">الحل المقترح</p>
+          <h3>ما هي الفكرة الأساسية للنظام؟</h3>
+          <div class="slide-grid">
+            <article class="slide-card">
+              <h4>بوابة تسجيل دخول آمنة</h4>
+              <p>يبدأ المستخدم بتسجيل الدخول عبر رقم الجوال وإرسال رمز OTP، ثم إتمام التسجيل بنجاح داخل النظام.</p>
+            </article>
+            <article class="slide-card">
+              <h4>طلب استمارة الشهيد أو الشهداء</h4>
+              <p>يمكن للمستخدم تقديم طلب تسجيل رسمي لشخص أو أكثر من الشهداء، مع تعبئة بيانات الطلب، رفع الوثائق، وإضافة أكثر من شهيد ضمن نفس الحساب المسجل.</p>
+            </article>
+            <article class="slide-card">
+              <h4>إرسال شكوى مستقلة</h4>
+              <p>يمكن للمستخدم أيضًا تقديم شكوى بشكل منفصل عن طلب الاستمارة، وتُدار هذه الشكاوى في مسار خاص يختلف عن مسار طلب التسجيل.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-4">
+        <div class="slide-content">
+          <p class="eyebrow">النطاق الوظيفي</p>
+          <h3>ما الذي سيتضمنه التطبيق؟</h3>
+          <div class="slide-grid">
+            <article class="slide-card">
+              <h4>1. تسجيل المستخدم وتأكيد الهوية</h4>
+              <p>تسجيل الدخول عبر رقم الهاتف، إرسال OTP، وتأكيد الهوية قبل السماح بالوصول إلى الاستمارة.</p>
+            </article>
+            <article class="slide-card">
+              <h4>2. إدارة استمارات الشهداء</h4>
+              <p>تسجيل بيانات مقدم الطلب، بيانات الشهداء، بيانات الاستشهاد، والوثائق المرفوعة، مع إمكانية إدراج أكثر من شهيد.</p>
+            </article>
+            <article class="slide-card">
+              <h4>3. إدارة الشكاوى</h4>
+              <p>إتاحة نموذج تقديم شكوى مستقل عن طلب الاستمارة، وتوجيهه إلى المختصين لإجراء الدراسة اللازمة ثم الإحالة إلى الجهة المعنية، مع إشعارات فورية تتبع حالة الشكوى.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-5">
+        <div class="slide-content">
+          <p class="eyebrow">السير الإداري</p>
+          <h3>كيف سيتم تنفيذ القرار الإداري؟</h3>
+          <div class="slide-grid">
+            <article class="slide-card">
+              <h4>المرحلة الأولى: الدراسة</h4>
+              <p>يتم فحص طلب الاستمارة أو الشكوى بشكل منفصل من قبل الإدارة أو المختصين، مع مراجعة المستندات والبيانات المرفوعة.</p>
+            </article>
+            <article class="slide-card">
+              <h4>المرحلة الثانية: القرار</h4>
+              <p>إذا تم رفض طلب الاستمارة، يتم إيقاف الحساب ومنع العودة إلى التسجيل مرة أخرى. وإذا تم قبوله، يتم تحويله إلى مرحلة المقابلة. أما الشكوى، فيتم تقييمها وإحالتها إلى الجهة المختصة وفقًا لنتيجة الدراسة.</p>
+            </article>
+            <article class="slide-card">
+              <h4>المرحلة الثالثة: الإنهاء</h4>
+              <p>بعد المقابلة، وإذا كان القرار النهائي إيجابيًا، يتم منح المستخدم رقمًا وحسابًا مخصصًا للدخول، مع اعتماد آلية دخول مختلفة عن الهاتف.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-6">
+        <div class="slide-content">
+          <p class="eyebrow">القيمة المضافة</p>
+          <h3>ما الفائدة العملية لهذا التطبيق للعميل؟</h3>
+          <div class="slide-grid">
+            <article class="slide-card">
+              <h4>شفافية أعلى</h4>
+              <p>يمنح النظام سجلاً واضحًا لكل طلب وشكوى وقرار، مما يحسن الإدارة ويقلل الغموض.</p>
+            </article>
+            <article class="slide-card">
+              <h4>سرعة في اتخاذ القرار</h4>
+              <p>يقلل الاعتماد على الورق والملفات المنفصلة، ويجعل متابعة الحالات أكثر كفاءة وسرعة  إلى الإشعارات المباشرة داخل المرحلة الأولى.</p>
+            </article>
+            <article class="slide-card">
+              <h4>إشعارات متكاملة</h4>
+              <p>تُعدّ الإشعارات جزءًا أساسيًا من المرحلة الأولى، سواء كانت عامة أو موجهة إلى عائلة معينة أو إلى مستخدم محدد، لتبقي جميع الأطراف على علم بالحالة والتطورات.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-7">
+        <div class="slide-content">
+          <p class="eyebrow">الخطوات التالية</p>
+          <h3>كيف نبدأ التنفيذ عمليًا؟</h3>
+          <div class="slide-grid">
+            <article class="slide-card">
+              <h4>1. توضيح المتطلبات</h4>
+              <p>تأكيد الأنظمة الإدارية، والمستخدمين، ومجالات القرار، والحدود القانونية أو التشغيلية.</p>
+            </article>
+            <article class="slide-card">
+              <h4>2. تنفيذ النسخة الأولى</h4>
+              <p>بناء النماذج الأساسية لتسجيل الدخول، الاستمارة، إدارة الطلبات، والشكاوى.</p>
+            </article>
+            <article class="slide-card">
+              <h4>3. الاختبار والتعزيز</h4>
+              <p>إجراء اختبارات فعلية على سير العمل الإداري، ثم تحسين النظام بناءً على ملاحظات المستخدمين والمختصين.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-8">
+        <div class="slide-content">
+          <p class="eyebrow">الخاتمة</p>
+          <h3>ملخص المقترح</h3>
+          <p class="slide-lead">هذا المقترح يهدف إلى بناء منصة رقمية ترفع كفاءة إدارة طلبات العوائل، تضمن الشفافية، وتوفر منظومة متكاملة للتسجيل، الدراسة، المقابلة، والقرار النهائي، مع قابلية التطوير لاحقًا لتصبح منصة إدارية متقدمة ومتكاملة.</p>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-9">
+        <div class="slide-content">
+          <p class="eyebrow">الهوية البصرية</p>
+          <h3>الهوية البصرية للتطبيق</h3>
+          <div class="visual-grid">
+            <article class="slide-card">
+              <h4>الرمزية والهوية</h4>
+              <p>يعتمد التطبيق على شعار يحمل طابعًا وطنيًا يعكس الأهمية الرمزية للملف والهوية السورية، مع تركيز واضح على الثبات والاحترام.</p>
+            </article>
+            <article class="slide-card">
+              <h4>الألوان الأساسية</h4>
+              <div class="palette" aria-label="ألوان الهوية البصرية">
+                <span style="background:#002623"></span>
+                <span style="background:#054239"></span>
+                <span style="background:#428177"></span>
+                <span style="background:#edebe0"></span>
+                <span style="background:#b9a779"></span>
+                <span style="background:#6b1f2a"></span>
+              </div>
+              <p>تُستخدم درجات الخضرة والقمح والرمادي الداكن لتعكس الثقة، الثراء التاريخي، والاحترافية.</p>
+            </article>
+            <article class="slide-card">
+              <h4>الخطوط والتصميم</h4>
+              <p>يُستخدم خط Qomra في العناوين والنصوص الأساسية، مع تصميم مريح ومقروء، وأزرار دائرية، وخلفيات ناعمة تدعم القراءة العربية.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="slide-nav">
+      <button class="nav-btn" id="prevBtn">السابق</button>
+      <span id="slideCounter">1 / 8</span>
+      <button class="nav-btn" id="nextBtn">التالي</button>
+    </div>
+  </div>
+</body>
+</html>

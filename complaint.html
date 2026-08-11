@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الشكاوى | منصة شهيد</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand">
+        <img src="assets/img/logo_new_syria.svg" alt="شعار منصة شهيد" class="brand-logo" />
+        <div>
+          <p class="brand-tag">منصة شهيد</p>
+          <h1>تقديم شكوى</h1>
+        </div>
+      </div>
+      <nav class="page-nav" aria-label="التنقل بين الصفحات">
+        <a href="index.html" class="nav-link">الرئيسية</a>
+        <a href="login.html" class="nav-link">تسجيل الدخول</a>
+        <a href="request.html" class="nav-link">الاستمارة</a>
+        <a href="complaint.html" class="nav-link active">الشكاوى</a>
+        <a href="status.html" class="nav-link">حالة الطلب</a>
+      </nav>
+    </header>
+
+    <main class="page-center">
+      <section class="form-card">
+        <div class="section-heading">
+          <p class="eyebrow">المرحلة الثانية</p>
+          <h3>نموذج تقديم شكوى منفصل</h3>
+        </div>
+
+        <form class="request-form">
+          <div class="form-grid">
+            <label><span>اسم مقدم الشكوى</span><input type="text" placeholder="الاسم الكامل" /></label>
+            <label><span>رقم الهاتف</span><input type="tel" placeholder="09XXXXXXXXX" /></label>
+            <label><span>نوع الشكوى</span>
+              <select>
+                <option>تأخر في الدراسة</option>
+                <option>معلومة ناقصة أو غير صحيحة</option>
+                <option>مشكلة في الوثائق</option>
+                <option>مشكلة في القرار الإداري</option>
+                <option>أخرى</option>
+              </select>
+            </label>
+            <label><span>رقم الطلب أو الاستمارة إن وجد</span><input type="text" placeholder="رقم الطلب" /></label>
+            <label><span>وصف الشكوى</span><textarea placeholder="يرجى توضيح المشكلة التي تريد رفعها"></textarea></label>
+            <label><span>مرفقات أو وثائق داعمة</span><input type="file" /></label>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">إرسال الشكوى</button>
+            <a href="status.html" class="btn btn-secondary">متابعة الحالة</a>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
