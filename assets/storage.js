@@ -18,9 +18,9 @@ function seedDemoUser(phone) {
 
   saveUser(phone, {
     applicant: {
-      firstName: 'أحمد',
-      fatherName: 'محمد',
-      familyName: 'العلي',
+      firstName: 'محمد',
+      fatherName: 'أحمد',
+      familyName: 'سلمان',
       nationalId: '12345678901',
       mobile: phone,
       whatsapp: phone,
@@ -28,9 +28,9 @@ function seedDemoUser(phone) {
     },
     martyrs: [{
       id: 'M-demo-1',
-      firstName: 'خالد',
+      firstName: 'محمد',
       fatherName: 'أحمد',
-      familyName: 'العلي',
+      familyName: 'سلمان',
       relationship: 'الابن',
       status: 'submitted',
     }],
