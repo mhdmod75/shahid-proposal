@@ -73,7 +73,7 @@
                   <option>الابنة</option>
                   <option>الأخ</option>
                   <option>الأخت</option>
-                  <option value="other">أخرى</option>
+                  <!-- <option value="other">أخرى</option> -->
                 </select>
                 <input type="text" name="relationshipOther" data-other-input class="other-field hidden" placeholder="يرجى توضيح صلة القرابة" />
               </label>
@@ -87,7 +87,7 @@
                 <input type="text" name="familyName" placeholder="اسم العائلة" required data-required-track />
               </label>
               <label><span>اسم والدة الشهيد</span>
-                <input type="text" name="motherName" placeholder="الاسم الأول فقط" data-required-track />
+                <input type="text" name="motherName" placeholder="الاسم الأول فقط" required data-required-track />
               </label>
               <label><span>الاسم الحركي أو اللقب</span>
                 <input type="text" name="nickname" placeholder="إن وجد" data-required-track />
@@ -96,16 +96,16 @@
                 <input type="text" name="nationalId" placeholder="إن توفر" data-required-track />
               </label>
               <label><span>يوم الميلاد</span>
-                <select name="birthDay" id="birthDay" data-required-track><option value="">اليوم</option></select>
+                <select name="birthDay" id="birthDay" required data-required-track><option value="">اليوم</option></select>
               </label>
               <label><span>شهر الميلاد</span>
-                <select name="birthMonth" id="birthMonth" data-required-track><option value="">الشهر</option></select>
+                <select name="birthMonth" id="birthMonth" required data-required-track><option value="">الشهر</option></select>
               </label>
               <label><span>سنة الميلاد</span>
-                <select name="birthYear" id="birthYear" data-required-track><option value="">السنة</option></select>
+                <select name="birthYear" id="birthYear" required data-required-track><option value="">السنة</option></select>
               </label>
               <label><span>مكان الولادة</span>
-                <input type="search" name="birthPlace" list="syria-locations" data-syria-search placeholder="المدينة فقط" data-required-track autocomplete="off" />
+                <input type="search" name="birthPlace" required list="syria-locations" data-syria-search placeholder="المدينة فقط" data-required-track autocomplete="off" />
               </label>
               <label><span>الحالة الاجتماعية وقت الاستشهاد</span>
                 <select name="maritalStatus" data-required-track>
@@ -209,7 +209,7 @@
               <div class="document-row" data-doc-row="0">
                 <label>
                   <span>عنوان الوثيقة</span>
-                  <select name="docTitle_0" class="doc-title-select" required data-required-track data-other-trigger>
+                  <select name="docTitle_0" class="doc-title-select"  data-required-track data-other-trigger>
                     <option value="">اختر عنوان الوثيقة</option>
                     <option>هوية شخصية أو إخراج قيد</option>
                     <option>بيان وفاة أو شهادة وفاة</option>
@@ -223,7 +223,7 @@
                 </label>
                 <label>
                   <span>رفع الوثيقة</span>
-                  <input type="file" name="docFile_0" accept="image/*,.pdf" required data-required-track />
+                  <input type="file" name="docFile_0" accept="image/*,.pdf"  data-required-track />
                 </label>
               </div>
             </div>
@@ -350,8 +350,9 @@
 
           <div class="form-actions form-actions-nav">
             <button type="button" class="btn btn-nav-arrow" id="prevStep" aria-label="القسم السابق">→</button>
-            <button type="button" class="btn btn-primary" id="nextStep">التالي</button>
-            <button type="submit" class="btn btn-primary hidden" id="submitStep">حفظ وإرسال</button>
+            <button type="button" class="btn btn-secondary" id="saveDraftStep">حفظ</button>
+            <button type="button" class="btn btn-primary" id="nextStep">حفظ - التالي</button>
+            <button type="submit" class="btn btn-primary hidden" id="submitStep">إرسال</button>
           </div>
         </form>
       </section>
@@ -420,6 +421,18 @@
     initFormWizard({
       formSelector: '#martyrForm',
       getStepCompletion,
+      onSave: (formEl) => {
+        const data = collectFormData(formEl);
+        const martyr = {
+          ...data,
+          documents: collectDocumentRows(formEl),
+          id: martyrId,
+          status: 'draft',
+          updatedAt: Date.now(),
+        };
+        saveMartyr(session.phone, martyr);
+        window.location.href = 'home.html';
+      },
       onSubmit: (formEl) => {
         const data = collectFormData(formEl);
         const martyr = {

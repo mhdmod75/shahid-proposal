@@ -12,6 +12,7 @@ function initFormWizard(options = {}) {
   const stepDots = Array.from(form.querySelectorAll('[data-step-dot]'));
   const prevButton = form.querySelector('#prevStep');
   const nextButton = form.querySelector('#nextStep');
+  const saveButton = form.querySelector('#saveDraftStep');
   const submitButton = form.querySelector('#submitStep');
   let currentStep = 1;
 
@@ -49,6 +50,7 @@ function initFormWizard(options = {}) {
 
     if (prevButton) prevButton.disabled = currentStep === 1;
     if (nextButton) nextButton.classList.toggle('hidden', currentStep === sections.length);
+    if (saveButton) saveButton.classList.toggle('hidden', currentStep !== sections.length);
     if (submitButton) submitButton.classList.toggle('hidden', currentStep !== sections.length);
 
     updateIndicators();
@@ -81,6 +83,11 @@ function initFormWizard(options = {}) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (onSubmit) onSubmit(form);
+  });
+
+  saveButton?.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (options.onSave) options.onSave(form);
   });
 
   submitButton?.addEventListener('click', (e) => {

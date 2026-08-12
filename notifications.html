@@ -26,7 +26,6 @@
       <div id="notificationsList" class="notifications-list"></div>
 
       <div class="empty-state hidden" id="emptyNotifications">
-        <div class="empty-icon">🔔</div>
         <p>لا توجد إشعارات حالياً. ستظهر هنا أي رسائل أو تحديثات من الإدارة.</p>
       </div>
     </main>
@@ -37,10 +36,10 @@
   <script>
     const session = requireAuth();
     const typeMeta = {
-      admin: { icon: '🏛️', label: 'إشعار إداري' },
-      request: { icon: '📋', label: 'طلب تسجيل' },
-      interview: { icon: '🤝', label: 'مقابلة' },
-      complaint: { icon: '✉️', label: 'شكوى' },
+      admin: { label: 'إشعار إداري' },
+      request: { label: 'طلب تسجيل' },
+      interview: { label: 'مقابلة' },
+      complaint: { label: 'شكوى' },
     };
 
     function formatDate(timestamp) {
@@ -82,7 +81,6 @@
         card.className = `notification-card${notification.read ? '' : ' unread'}`;
         card.innerHTML = `
           <div class="notification-card-top">
-            <span class="notification-type" aria-hidden="true">${meta.icon}</span>
             <div class="notification-head">
               <span class="notification-tag">${meta.label}</span>
               <h4>${notification.title}</h4>
