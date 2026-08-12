@@ -51,7 +51,13 @@ function initConditionalFields(root = document) {
     if (!select) return;
 
     const toggle = () => {
-      const show = select.value === field.dataset.showValue;
+      const mode = field.dataset.showMode || 'equals';
+      const showValue = field.dataset.showValue;
+      const hasValue = select.value !== '';
+      const show = mode === 'not-equal'
+        ? hasValue && select.value !== showValue
+        : select.value === showValue;
+
       field.classList.toggle('hidden', !show);
       field.querySelectorAll('input, select, textarea').forEach(input => {
         input.required = show && field.dataset.requiredWhen === 'true';

@@ -37,18 +37,18 @@
               <span class="step-label">الاستشهاد</span>
             </button>
             <span class="step-arrow" data-step-arrow="3" aria-hidden="true">←</span>
-            <button type="button" class="step-dot incomplete" data-step-dot="4" title="الوثائق">
+            <!-- <button type="button" class="step-dot incomplete" data-step-dot="4" title="الوثائق">
               <span class="step-num">4</span>
               <span class="step-label">الوثائق</span>
-            </button>
-            <span class="step-arrow" data-step-arrow="4" aria-hidden="true">←</span>
+            </button> -->
+            <!-- <span class="step-arrow" data-step-arrow="4" aria-hidden="true">←</span> -->
             <button type="button" class="step-dot incomplete" data-step-dot="5" title="الشهود">
-              <span class="step-num">5</span>
+              <span class="step-num">4</span>
               <span class="step-label">الشهود</span>
             </button>
-            <span class="step-arrow" data-step-arrow="5" aria-hidden="true">←</span>
+            <span class="step-arrow" data-step-arrow="4" aria-hidden="true">←</span>
             <button type="button" class="step-dot incomplete" data-step-dot="6" title="الإقرار">
-              <span class="step-num">6</span>
+              <span class="step-num">5</span>
               <span class="step-label">الإقرار</span>
             </button>
           </nav>
@@ -113,9 +113,11 @@
                   <option>أعزب</option><option>متزوج</option><option>مطلق</option><option>أرمل</option>
                 </select>
               </label>
-              <label><span>عدد أبناء الشهيد وبناته</span>
-                <input type="number" name="childrenCount" placeholder="0" min="0" data-required-track />
-              </label>
+              <div class="hidden" data-show-when="maritalStatus" data-show-value="أعزب" data-show-mode="not-equal">
+                <label><span>عدد أبناء الشهيد وبناته</span>
+                  <input type="number" name="childrenCount" placeholder="0" min="0" data-required-track />
+                </label>
+              </div>
             </div>
           </section>
 
@@ -135,7 +137,7 @@
                   <option value="">اختر النشاط الأساسي</option>
                   <option>مقاتل</option>
                   <option>قائد أو مسؤول عسكري</option>
-                  <option>شرعي</option>
+                  <option>توجيه معنوي</option>
                   <option>طبي أو مسعف</option>
                   <option>لوجستي أو إمداد ودعم</option>
                   <option>سائق أو نقل</option>
