@@ -114,27 +114,12 @@
               <label><span>مكان الولادة</span>
                 <input type="search" name="birthPlace" required list="syria-locations" data-syria-search placeholder="المدينة فقط" data-required-track autocomplete="off" />
               </label>
-              <label><span>الحالة الاجتماعية وقت الاستشهاد</span>
-                <select name="maritalStatus" required data-required-track>
-                  <option value="">اختر</option>
-                  <option>أعزب</option>
-                  <option>متزوج</option>
-                  <option>مطلق</option>
-                  <option>أرمل</option>
-                </select>
+              <label><span>عدد الزوجات</span>
+                <input type="number" name="wivesCount" placeholder="0" min="0" inputmode="numeric" data-required-track />
               </label>
-              <div class="hidden" data-wives-field>
-                <label>
-                  <span>عدد الزوجات</span>
-                  <input type="number" name="wivesCount" placeholder="1" min="1" inputmode="numeric" data-required-track />
-                  <small class="field-hint">يُعبّأ للذكور غير العزّاب فقط (متزوج، مطلّق، أو أرمل).</small>
-                </label>
-              </div>
-              <div class="hidden" data-show-when="maritalStatus" data-show-value="أعزب" data-show-mode="not-equal">
-                <label><span>عدد أبناء الشهيد وبناته</span>
-                  <input type="number" name="childrenCount" placeholder="0" min="0" data-required-track />
-                </label>
-              </div>
+              <label><span>عدد أبناء الشهيد وبناته</span>
+                <input type="number" name="childrenCount" placeholder="0" min="0" inputmode="numeric" data-required-track />
+              </label>
             </div>
           </section>
 
