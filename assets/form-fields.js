@@ -175,9 +175,41 @@ function isFieldFilled(field) {
   return field.value.trim() !== '';
 }
 
+
+function initGenderMaritalFields(root = document) {
+  const form = root.closest?.('form') || (root.tagName === 'FORM' ? root : null);
+  if (!form) return;
+
+  const genderField = form.querySelector('[name="gender"]');
+  const maritalField = form.querySelector('[name="maritalStatus"]');
+  const wivesField = form.querySelector('[data-wives-field]');
+  const wivesInput = form.querySelector('[name="wivesCount"]');
+  if (!genderField || !maritalField || !wivesField || !wivesInput) return;
+  if (genderField.dataset.genderMaritalReady === 'true') return;
+
+  const toggle = () => {
+    const isMale = genderField.value === 'ذكر';
+    const isSingle = maritalField.value === 'أعزب';
+    const hasMaritalStatus = maritalField.value !== '';
+    const show = isMale && hasMaritalStatus && !isSingle;
+
+    wivesField.classList.toggle('hidden', !show);
+    wivesInput.required = show;
+    wivesInput.min = maritalField.value === 'متزوج' ? '1' : '0';
+    if (!show) wivesInput.value = '';
+    wivesField.setAttribute('aria-hidden', show ? 'false' : 'true');
+  };
+
+  genderField.addEventListener('change', toggle);
+  maritalField.addEventListener('change', toggle);
+  genderField.dataset.genderMaritalReady = 'true';
+  toggle();
+}
+
 function initFormEnhancements(form) {
   if (!form) return;
   initRequiredMarks(form);
   initOtherFields(form);
   initConditionalFields(form);
+  initGenderMaritalFields(form);
 }
